@@ -1,0 +1,142 @@
+// Light mode options
+$bg-colour-light: #ffffff;
+$text-colour-light: #000000;
+$header-colour-light: #05111a;
+
+// Dark mode options
+$bg-colour-dark: #12232E;
+$text-colour-dark: #ffffff;
+$gradient-dark: linear-gradient(90deg, rgba(9,26,142,1) 0%, rgba(81,51,193,1) 52%, rgba(128,10,232,1) 100%);
+$header-colour-dark: #05111a;
+
+
+/* Mixin to apply light mode styles */
+@mixin light-mode {
+  background-color: $bg-colour-light;
+  color: $text-colour-light;
+}
+
+/* Mixin to apply dark mode styles */
+@mixin dark-mode {
+  background-color: $bg-colour-dark;
+  color: $text-colour-dark;
+}
+
+body {
+  @include light-mode;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+
+  font-size: 20px;
+  font-family: Segoe UI, sans-serif;
+}
+
+body.dark-mode {
+  @include dark-mode;
+}
+
+button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.project-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.project-box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+header {
+  border-bottom: 3px solid;
+  border-image-slice: 1;
+  border-image-source: $gradient-dark;
+
+  background-color: $header-colour-light;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #cccccc;
+}
+
+a:hover {
+  color: #ffffff;
+}

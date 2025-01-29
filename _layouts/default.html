@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+  </head>
+  <body>
+
+    <header>
+      <h3><a href="">G.Stuart Projects</a></h3>
+      <div>
+        <div>
+            <a href="./index.html">Home</a>
+            <a href="./projects.html">Projects</a>
+            <a href="./about.html">About</a>
+        </div>
+      </div>
+	  </header>
+
+    {{ content }}
+
+    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+
+  </body>
+</html>
