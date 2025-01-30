@@ -9,21 +9,10 @@ $text-colour-dark: #ffffff;
 $gradient-dark: linear-gradient(90deg, rgba(9,26,142,1) 0%, rgba(81,51,193,1) 52%, rgba(128,10,232,1) 100%);
 $header-colour-dark: #05111a;
 
-
-/* Mixin to apply light mode styles */
-@mixin light-mode {
+body {
   background-color: $bg-colour-light;
   color: $text-colour-light;
-}
 
-/* Mixin to apply dark mode styles */
-@mixin dark-mode {
-  background-color: $bg-colour-dark;
-  color: $text-colour-dark;
-}
-
-body {
-  @include light-mode;
   transition: background-color 0.3s ease, color 0.3s ease;
   margin: 0;
 
@@ -32,7 +21,8 @@ body {
 }
 
 body.dark-mode {
-  @include dark-mode;
+  background-color: $bg-colour-dark;
+  color: $text-colour-dark;
 }
 
 button {
@@ -42,8 +32,8 @@ button {
 .toggle {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 40px;
+  height: 16px;
 }
 
 .toggle input {
@@ -61,17 +51,17 @@ button {
   bottom: 0;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 34px;
+  border-radius: 14px;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
   left: 4px;
-  bottom: 4px;
+  top: 2px;
   background-color: white;
   transition: 0.4s;
 }
@@ -81,7 +71,7 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(26px);
+  transform: translateX(20px);
 }
 
 .projects {
@@ -120,18 +110,6 @@ input:checked + .slider:before {
   background-color: #0056b3;
 }
 
-header {
-  border-bottom: 3px solid;
-  border-image-slice: 1;
-  border-image-source: $gradient-dark;
-
-  background-color: $header-colour-light;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
 a {
   text-decoration: none;
   color: #cccccc;
@@ -139,4 +117,48 @@ a {
 
 a:hover {
   color: #ffffff;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  border-bottom: 3px solid;
+  border-image-slice: 1;
+  border-image-source: $gradient-dark;
+  background-color: $header-colour-light;
+}
+
+header h3 a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ffcc00; /* Highlight effect on hover */
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: white;
 }

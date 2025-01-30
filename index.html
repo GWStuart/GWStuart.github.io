@@ -5,13 +5,6 @@ title: Home
 
 <h1>My Projects</h1>
 
-<!-- <button id="mode-toggle">Toggle Dark Mode</button> -->
-<label class="toggle">
-  <input type="checkbox" id="mode-toggle">
-  <span class="slider"></span>
-</label>
-
-
 <div class="projects">
     {% assign sorted_projects = site.projects | sort: 'order' %}
     {% for project in sorted_projects %}
