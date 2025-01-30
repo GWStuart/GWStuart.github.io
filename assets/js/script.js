@@ -1,19 +1,27 @@
-const toggle = document.getElementById("mode-toggle");
+// Script to handle light and dark mode toggling
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("mode-toggle");
 
-// Check if the user has a preferred mode stored in localStorage
-if (localStorage.getItem("darkMode") === "true") {
-  document.body.classList.add("dark-mode");
-  toggle.click();  // works for now. Essentially makes sure it is on
-}
+    const savedTheme = localStorage.getItem("theme");
 
-// Toggle dark mode on button click
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
+    if (savedTheme) {
+        document.body.classList.toggle("dark-mode", savedTheme === "dark");
+        toggle.checked = savedTheme === "dark"; // Sync the toggle
+    } else {
+        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.body.classList.add("dark-mode");
+            toggle.checked = true;
+        }
+    }
 
-  // Store the mode in localStorage to persist the setting
-  if (document.body.classList.contains("dark-mode")) {
-    localStorage.setItem("darkMode", "true");
-  } else {
-    localStorage.setItem("darkMode", "false");
-  }
+    // Check for changes
+    toggle.addEventListener("change", () => {
+        if (toggle.checked) {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("theme", "light");
+        }
+    });
 });
