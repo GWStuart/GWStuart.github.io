@@ -3,22 +3,22 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title>{{ page.title }} - {{ site.title }}</title>
+    <title>{{ page.title }}</title>
     <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
   </head>
   <body>
 
     <header>
-      <h3><a href="./index.html">G.Stuart Projects</a></h3>
-      
       <nav>
+        <h3><a href="./index.html">G.Stuart Projects</a></h3>
+        
         <a href="./index.html">Home</a>
         <a href="./projects.html">Projects</a>
         <a href="./about.html">About</a>
       </nav>
 
       <div class="toggle-container">
-        <span>Dark Mode?</span>
+        <span>Dark Mode</span>
         <label class="toggle">
           <input type="checkbox" id="mode-toggle">
           <span class="slider"></span>
@@ -26,7 +26,29 @@
       </div>
     </header>
 
-    {{ content }}
+    <div class="content">
+      {{ content }}
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <p>2025 G.Stuart. See my social links below</p>
+        <div class="social-links">
+          <a href="https://github.com/GWStuart" target="_blank">
+            <img src="/assets/icons/github.svg" alt="GitHub" class="social-icon">
+          </a>
+          <a href="mailto:g.w.stuart05@gmail.com" target="_blank">
+            <img src="/assets/icons/email.svg" alt="Email" class="social-icon">
+          </a>
+          <a href="https://linkedin.com/in/yourusername" target="_blank">
+            <img src="/assets/icons/linkedin.svg" alt="LinkedIn" class="social-icon">
+          </a>
+          <a href="https://www.youtube.com/@georgestuartprojects6557" target="_blank">
+            <img src="/assets/icons/youtube.svg" alt="YouTube" class="social-icon">
+          </a>
+        </div>
+      </div>
+    </footer>
 
     <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
 

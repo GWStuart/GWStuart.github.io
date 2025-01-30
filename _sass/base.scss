@@ -1,7 +1,8 @@
 // Light mode options
 $bg-colour-light: #ffffff;
 $text-colour-light: #000000;
-$header-colour-light: #05111a;
+$gradient-light: #000000; // linear-gradient(90deg, rgba(9,26,142,1) 0%, rgba(81,51,193,1) 52%, rgba(128,10,232,1) 100%);
+$header-colour-light: #bebebe;
 
 // Dark mode options
 $bg-colour-dark: #12232E;
@@ -10,23 +11,40 @@ $gradient-dark: linear-gradient(90deg, rgba(9,26,142,1) 0%, rgba(81,51,193,1) 52
 $header-colour-dark: #05111a;
 
 body {
-  background-color: $bg-colour-light;
-  color: $text-colour-light;
-
-  transition: background-color 0.3s ease, color 0.3s ease;
-  margin: 0;
-
-  font-size: 20px;
   font-family: Segoe UI, sans-serif;
-}
-
-body.dark-mode {
-  background-color: $bg-colour-dark;
-  color: $text-colour-dark;
+  font-size: 20px;
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button {
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  border-bottom: 3px solid;
+  border-image-slice: 1;
+}
+
+header h3 a {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+nav a {
+  font-size: 1rem;
 }
 
 .toggle {
@@ -82,11 +100,9 @@ input:checked + .slider:before {
 }
 
 .project-box {
-  border: 1px solid #ddd;
   border-radius: 8px;
   padding: 16px;
   text-align: center;
-  background-color: #f9f9f9;
 }
 
 .project-box img {
@@ -112,48 +128,10 @@ input:checked + .slider:before {
 
 a {
   text-decoration: none;
-  color: #cccccc;
-}
-
-a:hover {
-  color: #ffffff;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-  border-bottom: 3px solid;
-  border-image-slice: 1;
-  border-image-source: $gradient-dark;
-  background-color: $header-colour-light;
-}
-
-header h3 a {
-  text-decoration: none;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-nav {
-  display: flex;
-  gap: 1.5rem;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
   transition: color 0.3s;
 }
 
-nav a:hover {
-  color: #ffcc00; /* Highlight effect on hover */
-}
+
 
 .toggle-container {
   display: flex;
@@ -161,4 +139,109 @@ nav a:hover {
   gap: 0.5rem;
   font-size: 1rem;
   color: white;
+}
+
+.content {
+  padding: 25px;
+}
+
+h1 {
+  margin: 0px;
+}
+
+footer {
+  color: white;
+  text-align: center;
+  padding: 20px;
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .social-links {
+    margin-top: 10px;
+
+    a {
+      display: inline-block;
+      margin: 0 10px;
+
+      img {  // icon size
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+// Set colours for the light and dark mode colour themes
+
+body {
+  background-color: $header-colour-light;
+  color: $text-colour-light;
+}
+
+body.dark-mode {
+  background-color: $header-colour-dark;
+  color: $text-colour-dark;
+}
+
+.content {
+  background-color: $bg-colour-light;
+}
+
+body.dark-mode .content {
+  background-color: $bg-colour-dark;
+}
+
+.project-box {
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+body.dark-mode .project-box {
+  border: 1px solid #171414;
+  background-color: #9e3131;
+}
+
+header {
+  border-image-source: $gradient-light;
+}
+
+body.dark-mode header {
+  border-image-source: $gradient-dark;
+}
+
+a {
+  color: #333333;
+}
+
+a:hover {
+  color: #000000;
+}
+
+body.dark-mode a {
+  color: #cccccc;
+}
+
+body.dark-mode a:hover {
+  color: #ffffff;
+}
+
+span {
+  color: #000000;
+}
+
+body.dark-mode span {
+  color: #ffffff;
+}
+
+body.dark-mode .social-icon {
+  filter: invert(1);
 }
