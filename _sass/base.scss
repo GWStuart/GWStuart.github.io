@@ -2,7 +2,7 @@
 $bg-colour-light: #ffffff;
 $text-colour-light: #000000;
 $gradient-light: #000000; // linear-gradient(90deg, rgba(9,26,142,1) 0%, rgba(81,51,193,1) 52%, rgba(128,10,232,1) 100%);
-$header-colour-light: #bebebe;
+$header-colour-light: #f0f0f0;
 
 // Dark mode options
 $bg-colour-dark: #12232E;
@@ -25,7 +25,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.8rem 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   border-bottom: 3px solid;
@@ -85,7 +85,8 @@ nav a {
 }
 
 input:checked + .slider {
-  background-color: #4CAF50;
+  // background-color: #4CAF50;
+  background-color: #4080cf;
 }
 
 input:checked + .slider:before {
@@ -111,19 +112,14 @@ input:checked + .slider:before {
   border-radius: 8px;
 }
 
-.btn {
+.project-btn {
   display: inline-block;
   margin-top: 10px;
-  padding: 10px 15px;
-  background-color: #007BFF;
-  color: white;
+  padding: 5px 8px;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 100px;
   font-weight: bold;
-}
-
-.btn:hover {
-  background-color: #0056b3;
+  font-size: medium;
 }
 
 a {
@@ -244,4 +240,23 @@ body.dark-mode span {
 
 body.dark-mode .social-icon {
   filter: invert(1);
+}
+
+.project-btn {
+  border: 2px solid #000000;
+  color: #000000;
+}
+
+.project-btn:hover {
+  background-color: #222222;
+  color: white;
+}
+
+body.dark-mode .project-btn {
+  border: 2px solid #007BFF;
+  color: white;
+}
+
+body.dark-mode .project-btn:hover {
+  background-color: #0056b3;
 }
