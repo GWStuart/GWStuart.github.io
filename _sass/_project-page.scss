@@ -83,12 +83,10 @@ ul li .tech-icon {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: #f0f0f0;
   padding: 4px 10px;
   border-radius: 15px;
   font-size: 14px;
   font-weight: 500;
-  color: #333;
   white-space: nowrap;
   
   max-width: fit-content;
@@ -110,4 +108,19 @@ ul li .tech-icon {
 .project-left-panel {
   display: flex;
   flex-direction: column;
+}
+
+// Colour theme configurations
+.tech-item {
+  background-color: #cbcbcb;
+  color: #333;
+}
+
+body.dark-mode .tech-item {
+  background-color: #5d87f2;
+  color: #333;
+
+  img {
+    filter: invert(1);
+  }
 }

@@ -42,9 +42,14 @@ layout: default
     <h2>Features</h2>
     <ul>
         {% for feature in page.features %}
-            <li>
-                <span>{{ feature.text }}</span>
-            </li>
+            <li> {{ feature.text }} </li>
+            {% if feature.subfeatures %}
+              <ul>
+                  {% for subfeature in feature.subfeatures %}
+                      <li>{{ subfeature }}</li>
+                  {% endfor %}
+              </ul>
+            {% endif %}
         {% endfor %}
     </ul>
 

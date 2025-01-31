@@ -1,8 +1,8 @@
 ---
 title: "PMan"
+permalink: /projects/pman
 layout: project
 description: "A stateless password manager written in Python with an accompanying web version written in JavaScript."
-# description: "A CLI stateless password manager written in python. A simplified web version was also written in JavaScript and can be used by clicking on the link below."
 image: "/assets/images/pman.png"
 technologies:
   - name: "Python"
@@ -14,19 +14,15 @@ technologies:
 demo: ""
 github: "https://github.com/GWStuart/pman"
 features:
-  - icon: "/assets/icons/lock.svg"
-    text: "Uses Argon2 for hashing"
-  - icon: "/assets/icons/terminal.svg"
-    text: "Available as CLI and Web version"
-  - icon: "/assets/icons/database.svg"
-    text: "Does not store passwords, generates them on demand"
-# features:
-#   - "Does not store passwords, generates them on demand"
-#   - "Uses Argon2 for hashing"
-#   - "Available as CLI and Web version"
+  - text: "Generates passwords on demand eliminating the need for a database"
+  - text: "Available as a CLI and written in Python"
+  - text: "Support for a web version written in JavaScript"
+  - text: "Uses the Argon2 cryptographic hash"
+    subfeatures:
+      - "Resistant to GPU cracking attacks"
+      - "Optimised to resist side-channel attakcs"
 screenshots:
   - "/assets/images/pman.png"
   - "/assets/images/pman.png"
-permalink: /projects/pman/
 order: 1
 ---
