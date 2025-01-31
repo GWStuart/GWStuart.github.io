@@ -1,6 +1,6 @@
 title: GStuart Projects
 description: My personal projects and portfolio website
-baseurl: ""
+baseurl: /
 url: "https://gwstuart.github.io"
 
 collections:
