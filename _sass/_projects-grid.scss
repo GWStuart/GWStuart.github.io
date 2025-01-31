@@ -1,0 +1,61 @@
+@use 'variables' as *;
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.project-box {
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.project-box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.project-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 8px;
+  text-decoration: none;
+  border-radius: 100px;
+  font-weight: bold;
+  font-size: medium;
+}
+
+// Set colour themes
+.project-box {
+  border: 1px solid #ddd;
+  background-color: $header-colour-light;
+}
+
+body.dark-mode .project-box {
+  border: 1px solid #171414;
+  // background-color: #0f2535;
+  background-color: $header-colour-dark;
+}
+
+.project-btn {
+  border: 2px solid #000000;
+  color: #000000;
+}
+
+.project-btn:hover {
+  background-color: #222222;
+  color: white;
+}
+
+body.dark-mode .project-btn {
+  border: 2px solid #007BFF;
+  color: white;
+}
+
+body.dark-mode .project-btn:hover {
+  background-color: #0056b3;
+}

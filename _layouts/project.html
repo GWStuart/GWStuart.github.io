@@ -2,6 +2,57 @@
 layout: default
 ---
 
-<h1>{{ page.title }}</h1>
-<img src="{{ page.image }}" alt="{{ page.title }}">
-<p>This is a project page I think</p>
+<main class="project-page">
+  <section class="project-header">
+    <div class="project-left-panel">
+      <img src="{{ page.image }}" alt="{{ page.title }}" class="project-header-img">
+
+      <div class="project-links">
+        {% if page.github %}
+          <a href="{{ page.github }}" class="btn" target="_blank">
+            GitHub
+            <img src="/assets/icons/github.svg" alt="" class="icon-test">
+          </a>
+        {% endif %}
+        {% if page.demo %}
+          <a href="{{ page.demo }}" class="btn" target="_blank">
+            Live Demo
+            <img src="/assets/icons/youtube.svg" alt="" class="icon-test">
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="project-info">
+      <h1>{{ page.title }}</h1>
+      <p>{{ page.description }}</p>
+      <div class="tech-stack">
+        {% for tech in page.technologies %}
+            <div class="tech-item">
+              {% if tech.icon != "" %}
+                <img src="{{ tech.icon }}" alt="" class="tech-icon">
+              {% endif %}
+              <span>{{ tech.name }}</span>
+            </div>
+        {% endfor %}
+      </div>
+  </section>
+
+  <section class="project-details">
+    <h2>Features</h2>
+    <ul>
+        {% for feature in page.features %}
+            <li>
+                <span>{{ feature.text }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Screenshots</h2>
+    <div class="gallery">
+      {% for screenshot in page.screenshots %}
+        <img src="{{ screenshot }}" alt="Screenshot" title="add a description here">
+      {% endfor %}
+    </div>
+  </section>
+</main>

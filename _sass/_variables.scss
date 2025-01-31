@@ -1,0 +1,11 @@
+// Light mode options
+$bg-colour-light: #ffffff;
+$text-colour-light: #000000;
+$gradient-light: #000000; // linear-gradient(90deg, rgba(9,26,142,1) 0%, rgba(81,51,193,1) 52%, rgba(128,10,232,1) 100%);
+$header-colour-light: #f0f0f0;
+
+// Dark mode options
+$bg-colour-dark: #12232E;
+$text-colour-dark: #ffffff;
+$gradient-dark: linear-gradient(90deg, #091a8e 0%, rgba(81,51,193,1) 52%, rgba(128,10,232,1) 100%);
+$header-colour-dark: #05111a;
