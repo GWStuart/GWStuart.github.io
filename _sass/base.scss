@@ -1,8 +1,8 @@
-@use "variables" as *;
-@use "header";
-@use "footer";
-@use "projects-grid";
-@use "project-page";
+@import "variables";
+@import "header";
+@import "footer";
+@import "projects-grid";
+@import "project-page";
 
 body {
   font-family: Segoe UI, sans-serif;
