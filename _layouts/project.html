@@ -53,11 +53,13 @@ layout: default
         {% endfor %}
     </ul>
 
-    <h2>Screenshots</h2>
-    <div class="gallery">
-      {% for screenshot in page.screenshots %}
-        <img src="{{ screenshot }}" alt="Screenshot" title="add a description here">
-      {% endfor %}
-    </div>
+    {% if page.screenshots %}
+      <h2>Screenshots</h2>
+      <div class="gallery">
+        {% for screenshot in page.screenshots %}
+          <img src="{{ screenshot }}" alt="Screenshot" title="add a description here">
+        {% endfor %}
+      </div>
+    {% endif %}
   </section>
 </main>

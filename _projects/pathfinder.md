@@ -24,8 +24,6 @@ features:
       - "Random max generation"
       - "Enabling/Disabling of diagonal moves"
       - "Variable animation speed"
-screenshots:
-  - "/assets/images/pman.png"
-  - "/assets/images/pman.png"
+# screenshots:
 order: 2
 ---

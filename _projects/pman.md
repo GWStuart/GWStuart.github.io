@@ -22,7 +22,5 @@ features:
       - "Resistant to GPU cracking attacks"
       - "Optimised to resist side-channel attakcs"
 screenshots:
-  - "/assets/images/pman.png"
-  - "/assets/images/pman.png"
 order: 1
 ---

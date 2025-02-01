@@ -24,8 +24,6 @@ features:
       - "Step count"
       - "Value of the heuristic function"
       - "Total cost value of the given cell"
-screenshots:
-  - "/assets/images/pman.png"
-  - "/assets/images/pman.png"
+# screenshots:
 order: 3
 ---

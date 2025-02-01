@@ -16,8 +16,6 @@ features:
   - text: "Implementation of a MiniMax AI model"
   - text: "Looks up to 7 moves in the future"
   - text: "Programmed in Python with Pygame for the GUI"
-screenshots:
-  - "/assets/images/pman.png"
-  - "/assets/images/pman.png"
+# screenshots:
 order: 4
 ---
