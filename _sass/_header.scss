@@ -72,6 +72,27 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
+// Detect mobile devices
+@media (max-width: 600px) {
+  header {
+    padding: 0 1rem;
+    justify-content: space-between;
+  }
+
+  nav {
+    gap: 0.8rem;
+    margin-right: 0.8rem;
+  }
+
+  nav h3 {
+    width: min-content;
+  }
+
+  .toggle-text {
+    display: none;
+  }
+}
+
 // Light and dark themes
 header {
   border-image-source: $gradient-light;
