@@ -110,6 +110,25 @@ ul li .tech-icon {
   flex-direction: column;
 }
 
+@media (max-width: 600px) {
+  .project-header {
+    flex-direction: column;
+  }
+
+  .project-header-img {
+    width: 200px;
+    align-self: center;
+  }
+
+  .project-links {
+    align-self: center;
+  }
+
+  .project-page {
+    padding: 0;
+  }
+}
+
 // Colour theme configurations
 .tech-item {
   background-color: #cbcbcb;

@@ -35,14 +35,18 @@ img {
 }
 
 ul {
-  list-style: none;
+	position: relative;
+	list-style: none;
+	margin-left: 0;
+	padding-left: 1.2em;
 }
 
-ul li::before {
-  content: "> ";
+ul li:before {
+	content: "> ";
   font-weight: bolder;
   font-size: 1.2em;
-  margin-right: 8px;
+	position: absolute;
+	left: 0;
 }
 
 li {
