@@ -1,5 +1,5 @@
 ---
-title: "Connect 4"
+title: "AI Connect-4"
 permalink: /projects/connect-4
 layout: project
 description: "An AI bot that you can compete again in Connect 4. Developed using the Minimax algorithm the AI can look up to 7 states into the future."

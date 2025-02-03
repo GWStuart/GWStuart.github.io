@@ -16,5 +16,5 @@ features:
   - text: "Visualisations of n degree Bezier Curves"
   - text: "Ability to slow down, pause and rewind the animation"
 # screenshots:
-order: 5
+order: 6
 ---
