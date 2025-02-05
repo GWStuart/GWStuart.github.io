@@ -3,6 +3,7 @@
 @import "footer";
 @import "projects-grid";
 @import "project-page";
+@import "about";
 
 body {
   font-family: Segoe UI, sans-serif;
@@ -34,27 +35,8 @@ img {
   pointer-events: none
 }
 
-ul {
-	position: relative;
-	list-style: none;
-	margin-left: 0;
-	padding-left: 1.2em;
-}
-
-ul li:before {
-	content: "> ";
-  font-weight: bolder;
-  font-size: 1.2em;
-	position: absolute;
-	left: 0;
-}
-
-li {
-  padding: 3px;
-}
 
 // Set colours for the light and dark mode colour themes
-
 body {
   background-color: $header-colour-light;
   color: $text-colour-light;

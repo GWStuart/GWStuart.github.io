@@ -1,0 +1,50 @@
+.about-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 15px;
+}
+
+.about-image {
+    max-width: 300px;
+    height: auto;
+    border-radius: 300px;
+}
+
+.about-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 20px 4px 0;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    
+    max-width: fit-content;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.about-social-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.about-social:hover {
+    transform: scale(1.2);
+}
+
+.about-name {
+    font-size: 25px;
+    margin: 10px 0;
+}
+
+// Colour theme configurations
+
+body.dark-mode .about-social {
+
+  img {
+    filter: invert(1);
+  }
+}
