@@ -40,8 +40,19 @@
     margin: 10px 0;
 }
 
-// Colour theme configurations
+@media (max-width: 600px) {
+    .about-content {
+        padding: 0px;
+        flex-direction: column;
+    }
 
+    .about-image {
+        max-width: 150px;
+    }
+}
+
+
+// Colour theme configurations
 body.dark-mode .about-social {
 
   img {
