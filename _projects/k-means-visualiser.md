@@ -17,5 +17,5 @@ features:
   - text: "Clearly visualises the step by step process"
   - text: "Classifies 2 dimensional data into k groups"
 # screenshots:
-order: 7
+order: 8
 ---

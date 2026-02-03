@@ -17,5 +17,5 @@ features:
   - text: "Looks up to 7 moves in the future"
   - text: "Programmed in Python with Pygame for the GUI"
 # screenshots:
-order: 4
+order: 5
 ---

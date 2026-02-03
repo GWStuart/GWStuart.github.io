@@ -18,5 +18,5 @@ features:
   - text: "Supports variable board sizes"
   - text: "Easy to use command line interface for testing and rendering games"
 # screenshots:
-order: 5
+order: 6
 ---
