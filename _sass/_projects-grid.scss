@@ -1,4 +1,6 @@
-@use 'variables' as *;
+//@use 'variables' as *;
+
+@import 'variables';
 
 .projects {
   display: grid;
