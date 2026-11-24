@@ -13,6 +13,7 @@ technologies:
     icon: "/assets/icons/algorithm.svg"
   - name: "Tkinter"
     icon: "/assets/icons/package.svg"
+demo: "https://www.youtube.com/watch?v=U83W1zOiRB0"
 github: "https://github.com/GWStuart/PythonProjects/tree/main/Pathfinder-Explanation"
 features:
   - text: "Supports A* Seach and Dijkstra's Algorithm"
