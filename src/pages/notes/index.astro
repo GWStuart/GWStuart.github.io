@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import NoteList from '../../components/NoteList.astro';
+import { getNotes, groupByYear } from '../../lib/content';
+
+const notes = await getNotes();
+---
+
+<Base title="Notes" description="Mathematics notes by George Stuart, written in LaTeX.">
+  <h1>Notes</h1>
+  <p class="tagline">Maths notes, written in LaTeX.</p>
+
+  <div class="section">
+    {
+      notes.length === 0 ? (
+        <p>No notes yet.</p>
+      ) : (
+        groupByYear(notes).map(([year, items]) => (
+          <section class="year-group">
+            <h2 class="year-heading">{year}</h2>
+            <NoteList notes={items} />
+          </section>
+        ))
+      )
+    }
+  </div>
+</Base>

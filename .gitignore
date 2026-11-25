@@ -1,2 +1,11 @@
-/_site
-Gemfile.lock
+# dependencies and build output
+node_modules/
+dist/
+.astro/
+
+# PDFs compiled from content/notes by `npm run notes`
+public/notes/
+
+# leftovers from the old Jekyll site
+_site/
+.jekyll-cache/

@@ -1,0 +1,16 @@
+---
+// GitHub · LinkedIn · Email · … (· CV), from src/site.config.ts.
+import { site } from '../site.config';
+
+const links = [...site.links, ...(site.cv ? [{ label: 'CV', href: site.cv }] : [])];
+---
+
+<ul class="inline-list">
+  {
+    links.map(({ label, href }) => (
+      <li>
+        <a href={href}>{label}</a>
+      </li>
+    ))
+  }
+</ul>

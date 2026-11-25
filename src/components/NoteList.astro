@@ -1,0 +1,44 @@
+---
+import { site } from '../site.config';
+import { notePdfUrl, noteSourceUrl, semesterLabel, type Note } from '../lib/content';
+
+interface Props {
+  notes: Note[];
+}
+
+const { notes } = Astro.props;
+---
+
+<ul class="item-list">
+  {
+    notes.map((note) => {
+      const { title, course, year, semester, summary, draft } = note.data;
+      const source = noteSourceUrl(note, site.repo);
+      const when = [semesterLabel(semester), year].filter(Boolean).join(' ');
+      return (
+        <li class="note-item">
+          <div class="item-heading">
+            <h3>
+              <a href={notePdfUrl(note)}>{course ? `${course}: ${title}` : title}</a>
+              {draft && <span class="badge">Draft</span>}
+            </h3>
+            <span class="meta">{when}</span>
+          </div>
+          <div class="item-body">
+            {summary && <p class="summary">{summary}</p>}
+            <ul class="inline-list meta">
+              <li>
+                <a href={notePdfUrl(note)}>PDF</a>
+              </li>
+              {source && (
+                <li>
+                  <a href={source}>LaTeX source</a>
+                </li>
+              )}
+            </ul>
+          </div>
+        </li>
+      );
+    })
+  }
+</ul>

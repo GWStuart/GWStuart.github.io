@@ -1,0 +1,62 @@
+# Builds the site and publishes it to https://gwstuart.github.io on every push to main.
+# Requires Settings → Pages → Source to be "GitHub Actions".
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Skipped while there are no notes, since the TeX Live image is large.
+      - name: Build maths notes (LaTeX → PDF)
+        if: hashFiles('content/notes/*/index.md') != ''
+        uses: xu-cheng/texlive-action@v3
+        with:
+          scheme: full
+          run: bash scripts/build-notes.sh
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Check internal links and images
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --offline --no-progress
+            --root-dir ${{ github.workspace }}/dist
+            --index-files index.html
+            'dist/**/*.html'
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

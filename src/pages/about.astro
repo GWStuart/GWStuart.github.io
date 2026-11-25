@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import LinkRow from '../components/LinkRow.astro';
+import { Content as About } from '../../content/about.md';
+import profile from '../assets/profile.jpg';
+import { site } from '../site.config';
+---
+
+<Base title="About" description={`About ${site.name}.`}>
+  <article class="about">
+    <Image class="portrait" src={profile} alt="Profile picture" width={320} height={320} />
+    <h1>About</h1>
+    <div class="prose">
+      <About />
+    </div>
+    <h2 class="section-title section">Contact</h2>
+    <LinkRow />
+  </article>
+</Base>

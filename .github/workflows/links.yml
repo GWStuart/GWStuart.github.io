@@ -1,0 +1,43 @@
+# Weekly check that external links (GitHub repos, YouTube videos, ...) still work.
+# If one breaks, this run fails and GitHub emails you. Can also be run by hand from the Actions tab.
+name: Check external links
+
+on:
+  schedule:
+    - cron: '0 21 * * 0' # Mondays 07:00 in Brisbane
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build maths notes (LaTeX → PDF)
+        if: hashFiles('content/notes/*/index.md') != ''
+        uses: xu-cheng/texlive-action@v3
+        with:
+          scheme: full
+          run: bash scripts/build-notes.sh
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      # LinkedIn blocks automated requests, so it's skipped; 429 means "rate limited", not broken.
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --root-dir ${{ github.workspace }}/dist
+            --index-files index.html
+            --exclude 'linkedin\.com'
+            --accept '200..=299,429'
+            'dist/**/*.html'

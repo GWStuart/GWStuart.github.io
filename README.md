@@ -1,36 +1,82 @@
-# GStuart Projects
+# gwstuart.github.io
 
-Checkout my website [here](https://GWStuart.github.io)
+My personal website: programming projects, maths notes and a bit about me. Live at **https://gwstuart.github.io**.
 
-The website showcases some of my favourite programming projects over time.
+Built with [Astro](https://astro.build) as a plain static site. GitHub Actions builds and deploys it on every push to `main`.
 
-The site was made using Jekyll and is powerd by GitHub Pages.
+## Running it locally
 
-<br>
+Needs Node 26 (the version is pinned in `.nvmrc`). With [nvm](https://github.com/nvm-sh/nvm): `nvm use`.
 
-<br>
-
-## Notes to Self
-Here are just a few personal notes to myself since I don't maintain this website very actively and so I often forget how to work with it.
-
-When running the website locally you need to ensure that jekyll is installed,
-```
-jekyll --version
-```
-If that command does not work then install it. Note that there are some dependencies such as ruby but you should be able to find this all online.
-
-Then navigate to the directory of the cloned repository and load all of the dependencies specified in the `Gemfile` with the command,
-```
-bundle install
-```
-If you have dependencies errors then try running `bundle update` first.
-
-Run the server locally with live reload using the following command,
-```
-bundle exec jekyll serve --livereload
+```sh
+npm install        # once, or after pulling dependency changes
+npm run dev        # live preview at http://localhost:4321
+npm run build      # full production build into dist/ (fails on bad content)
+npm run preview    # serve the built dist/
 ```
 
-## Other Notes to Self
+## Where things live
 
-### Deprecated @import rules
-When running jekyll locally you will see many deprecation warnings because @import rules have been deprecated and should be replaced with @use. However GitHub pages does nott yet support @use so you will have to ignore these warnings. Once github pages does support it it will be an easy fix you just need to replace @import with the commented out @use statements that are in the `assets/css/main.scss` file and all files within the `_sass/` directory.
+```
+content/                      everything you normally edit
+  home.md                     intro text on the home page
+  about.md                    the About page
+  projects/<slug>/            one folder per project  →  /projects/<slug>/
+    index.md                  details (front matter) + description (Markdown)
+    cover.png                 required: list thumbnail and header image
+    screenshots/              optional: any images here become a gallery
+  notes/<slug>/               one folder per note     →  /notes/<slug>.pdf
+    index.md                  title, year, course, ...
+    main.tex                  compiled to the PDF (or put a ready-made .pdf here instead)
+src/site.config.ts            name, tagline, social links, CV switch
+src/                          layouts, pages and styles (rarely needs touching)
+```
+
+## Adding a project
+
+```sh
+npm run new -- project "Ray Tracer"
+```
+
+This creates `content/projects/ray-tracer/index.md` with every field explained. Then:
+
+1. Add `cover.png` to that folder (required). Optionally add a `screenshots/` folder. A caption comes from each file's name: `1-main-menu.png` → "Main menu".
+2. Fill in `index.md`. `summary` is the one line shown in lists. `featured: true` also puts the project on the home page.
+3. Delete the `draft: true` line when it's ready. Drafts appear in `npm run dev` but not on the live site.
+
+Projects are sorted by `year` (newest first), so there's no ordering number to maintain. If a field is missing or misspelt, or an image is missing, `npm run build` stops and names the file.
+
+## Adding maths notes
+
+```sh
+npm run new -- note "Complex Analysis"
+npm run notes      # compiles content/notes/*/main.tex into public/notes/*.pdf
+```
+
+Write the notes in `main.tex`, then delete `draft: true` in `index.md`. On deploy, CI compiles the LaTeX itself (full TeX Live), so the PDFs never need committing.
+
+- **Shared macros or preamble:** put them in `content/notes/_shared/` and `\input{...}` them from any note.
+- **Keeping the source private:** leave out `main.tex` and drop a single finished `.pdf` in the note's folder instead.
+- **The Notes page and header link** appear automatically once the first note is published.
+
+## Adding a CV
+
+Put the PDF at `public/cv.pdf` and set `cv: '/cv.pdf'` in `src/site.config.ts`. A CV link then appears in the header and the links row.
+
+## Deploying
+
+Push to `main`. `.github/workflows/deploy.yml` then:
+
+1. compiles the notes
+2. builds the site
+3. checks that every internal link and image resolves
+4. publishes to GitHub Pages
+
+This needs Settings → Pages → Source set to **GitHub Actions**.
+
+`.github/workflows/links.yml` checks external links (GitHub, YouTube, …) every week. It can also be run by hand from the Actions tab. If a link breaks, the run fails and GitHub emails you.
+
+## History
+
+- `jekyll-site` branch: the previous Jekyll version of this site (2025–2026).
+- `old-version` branch: the original hand-written HTML site (2023).

@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import LinkRow from '../components/LinkRow.astro';
+import ProjectList from '../components/ProjectList.astro';
+import NoteList from '../components/NoteList.astro';
+import { Content as Intro } from '../../content/home.md';
+import { site } from '../site.config';
+import { getNotes, getProjects } from '../lib/content';
+
+const projects = await getProjects();
+const featured = projects.filter((project) => project.data.featured);
+const selected = featured.length > 0 ? featured : projects.slice(0, 5);
+const notes = await getNotes();
+---
+
+<Base>
+  <section class="intro">
+    <h1>{site.name}</h1>
+    <p class="tagline">{site.tagline}</p>
+    <LinkRow />
+    <div class="prose">
+      <Intro />
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Selected projects</h2>
+    <ProjectList projects={selected} />
+    <p class="more"><a href="/projects/">All {projects.length} projects →</a></p>
+  </section>
+
+  {
+    notes.length > 0 && (
+      <section class="section">
+        <h2 class="section-title">Notes</h2>
+        <NoteList notes={notes.slice(0, 5)} />
+        {notes.length > 5 && (
+          <p class="more">
+            <a href="/notes/">All {notes.length} notes →</a>
+          </p>
+        )}
+      </section>
+    )
+  }
+</Base>

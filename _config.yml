@@ -1,9 +1,0 @@
-title: GStuart Projects
-description: My personal projects and portfolio website
-baseurl: /
-url: "https://gwstuart.github.io"
-
-collections:
-  projects:
-    output: true
-    permalink: /projects/:title/

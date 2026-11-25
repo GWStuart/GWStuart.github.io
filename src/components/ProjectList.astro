@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+import type { Project } from '../lib/content';
+
+interface Props {
+  projects: Project[];
+  /** Hide the year when the list is already grouped under a year heading. */
+  showYear?: boolean;
+}
+
+const { projects, showYear = true } = Astro.props;
+---
+
+<ul class="item-list">
+  {
+    projects.map((project) => {
+      const { title, summary, year, tags, cover, award, draft } = project.data;
+      const href = `/projects/${project.id}/`;
+      return (
+        <li class="project-item">
+          <a class="thumb" href={href} tabindex="-1" aria-hidden="true">
+            <Image src={cover} alt="" width={240} height={180} />
+          </a>
+          <div class="item-body">
+            <div class="item-heading">
+              <h3>
+                <a href={href}>{title}</a>
+                {draft && <span class="badge">Draft</span>}
+              </h3>
+              {showYear && <span class="meta">{year}</span>}
+            </div>
+            <p class="summary">{summary}</p>
+            {tags.length > 0 && (
+              <ul class="inline-list meta">
+                {tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
+            )}
+            {award && <p class="award">{award}</p>}
+          </div>
+        </li>
+      );
+    })
+  }
+</ul>

@@ -1,0 +1,82 @@
+---
+import { render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import { getProjects, getScreenshots, type Project } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { title, summary, year, tags, cover, award, links, draft } = project.data;
+const { Content } = await render(project);
+
+const linkLabels = { github: 'GitHub', video: 'Video', demo: 'Live demo' } as const;
+const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
+  .filter((key) => links[key])
+  .map((key) => ({ label: linkLabels[key], href: links[key]! }));
+
+// Each gallery thumbnail links to the original, full-size image.
+const screenshots = getScreenshots(project.id);
+
+// Image shown when the page is shared (LinkedIn, Slack, ...).
+const preview = await getImage({ src: cover, width: 1200, format: 'jpg', quality: 80, background: '#ffffff' });
+---
+
+<Base title={title} description={summary} image={preview.src}>
+  <a class="back" href="/projects/">← All projects</a>
+
+  <header class="project-header">
+    <h1>
+      {title}
+      {draft && <span class="badge">Draft</span>}
+    </h1>
+    <p class="lede">{summary}</p>
+    <ul class="inline-list meta">
+      <li>{year}</li>
+      {tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+    {award && <p class="award">{award}</p>}
+    {
+      linkList.length > 0 && (
+        <ul class="inline-list project-links">
+          {linkList.map(({ label, href }) => (
+            <li>
+              <a href={href}>{label} ↗</a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </header>
+
+  <Image class="cover" src={cover} alt={`Screenshot of ${title}`} width={Math.min(cover.width, 1344)} quality="high" priority />
+
+  <div class="prose">
+    <Content />
+  </div>
+
+  {
+    screenshots.length > 0 && (
+      <section class="section">
+        <h2 class="section-title">Screenshots</h2>
+        <div class="gallery">
+          {screenshots.map(({ image, caption }) => (
+            <figure>
+              <a href={image.src}>
+                <Image src={image} alt={caption} width={640} />
+              </a>
+              <figcaption>{caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Base>
