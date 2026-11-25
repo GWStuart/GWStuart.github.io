@@ -32,6 +32,7 @@ const projects = defineCollection({
       year: z.number().int().min(2000).max(2100),
       tags: z.array(text()).default([]),
       cover: image(),
+      thumbnail: image().optional(), // a different image for project lists, if the cover doesn't crop well
       featured: z.boolean().default(false),
       award: text().optional(),
       links: z

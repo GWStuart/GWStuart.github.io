@@ -41,6 +41,7 @@ summary: "One line describing the project (shown in project lists)."
 year: ${year}
 tags: []                # e.g. [Python, Pygame, AI]
 cover: ./cover.png      # required: put an image called cover.png in this folder
+# thumbnail: ./thumbnail.png   # optional: a different image for project lists (shown cropped to 4:3)
 featured: false         # true = also shown on the home page
 # award: "Winner, Some Hackathon ${year}"
 # links:                # uncomment the ones that apply

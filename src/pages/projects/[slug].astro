@@ -2,6 +2,8 @@
 import { render } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
+import Gallery from '../../components/Gallery.astro';
+import Lightbox from '../../components/Lightbox.astro';
 import { getProjects, getScreenshots, type Project } from '../../lib/content';
 
 export async function getStaticPaths() {
@@ -22,7 +24,6 @@ const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
   .filter((key) => links[key])
   .map((key) => ({ label: linkLabels[key], href: links[key]! }));
 
-// Each gallery thumbnail links to the original, full-size image.
 const screenshots = getScreenshots(project.id);
 
 // Image shown when the page is shared (LinkedIn, Slack, ...).
@@ -56,7 +57,9 @@ const preview = await getImage({ src: cover, width: 1200, format: 'jpg', quality
     }
   </header>
 
-  <Image class="cover" src={cover} alt={`Screenshot of ${title}`} width={Math.min(cover.width, 1344)} quality="high" priority />
+  <a class="cover-link" href={cover.src} data-lightbox data-caption={title}>
+    <Image class="cover" src={cover} alt={`Screenshot of ${title}`} width={Math.min(cover.width, 1344)} quality="high" priority />
+  </a>
 
   <div class="prose">
     <Content />
@@ -66,17 +69,10 @@ const preview = await getImage({ src: cover, width: 1200, format: 'jpg', quality
     screenshots.length > 0 && (
       <section class="section">
         <h2 class="section-title">Screenshots</h2>
-        <div class="gallery">
-          {screenshots.map(({ image, caption }) => (
-            <figure>
-              <a href={image.src}>
-                <Image src={image} alt={caption} width={640} />
-              </a>
-              <figcaption>{caption}</figcaption>
-            </figure>
-          ))}
-        </div>
+        <Gallery screenshots={screenshots} />
       </section>
     )
   }
+
+  <Lightbox />
 </Base>

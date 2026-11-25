@@ -1,0 +1,25 @@
+---
+// Screenshot gallery. Each thumbnail links to its full-size image; on a page that also
+// includes <Lightbox />, clicking one opens it in the overlay instead.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  screenshots: { image: ImageMetadata; caption: string }[];
+}
+
+const { screenshots } = Astro.props;
+---
+
+<div class="gallery">
+  {
+    screenshots.map(({ image, caption }) => (
+      <figure>
+        <a href={image.src} data-lightbox data-caption={caption}>
+          <Image src={image} alt={caption} width={640} />
+        </a>
+        <figcaption>{caption}</figcaption>
+      </figure>
+    ))
+  }
+</div>

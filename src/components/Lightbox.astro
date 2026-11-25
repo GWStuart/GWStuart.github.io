@@ -1,0 +1,41 @@
+---
+// Overlay that shows an image at full size. Include it once on a page; then any link with
+// `data-lightbox` (and an optional `data-caption`) opens its image here instead of navigating.
+// It closes with the Close button, Escape, or a click outside the image. Without JavaScript
+// (or with Ctrl/⌘/middle-click) those links still open the image directly.
+---
+
+<dialog class="lightbox" aria-label="Enlarged image">
+  <form method="dialog">
+    <button class="lightbox-close" type="submit">Close ✕</button>
+  </form>
+  <figure>
+    <img alt="" />
+    <figcaption></figcaption>
+  </figure>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('dialog.lightbox')!;
+  const image = dialog.querySelector('img')!;
+  const caption = dialog.querySelector('figcaption')!;
+
+  document.querySelectorAll<HTMLAnchorElement>('a[data-lightbox]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Let Ctrl/⌘/Shift/middle clicks open the image in a new tab as usual.
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      image.src = link.href;
+      image.alt = link.dataset.caption ?? '';
+      caption.textContent = link.dataset.caption ?? '';
+      dialog.showModal(); // Escape closes it natively
+    });
+  });
+
+  // A click anywhere except on the image itself closes the overlay.
+  dialog.addEventListener('click', (event) => {
+    if (event.target !== image) dialog.close();
+  });
+
+  dialog.addEventListener('close', () => image.removeAttribute('src'));
+</script>

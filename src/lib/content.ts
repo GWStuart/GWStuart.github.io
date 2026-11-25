@@ -40,9 +40,19 @@ export function groupByYear<T extends { data: { year: number } }>(items: T[]): [
 
 // Every image in content/projects/<id>/screenshots/, loaded once.
 const screenshotFiles = import.meta.glob<ImageMetadata>(
-  '/content/projects/*/screenshots/*.{png,jpg,jpeg,webp,gif}',
+  '/content/projects/*/screenshots/*.{png,jpg,jpeg,webp}',
   { eager: true, import: 'default' },
 );
+
+// Animated GIFs can't be shrunk to a still thumbnail, so every visitor would download the
+// whole animation. Stop the build with an explanation instead of shipping that.
+const gifs = Object.keys(import.meta.glob('/content/projects/*/screenshots/*.gif'));
+if (gifs.length > 0) {
+  throw new Error(
+    `GIFs aren't supported as screenshots (${gifs.map((g) => g.slice(1)).join(', ')}). ` +
+      'Use a still PNG/JPG frame instead, and link to the animation (e.g. on GitHub or YouTube) from the project text.',
+  );
+}
 
 /**
  * Screenshots for a project, in filename order. The caption comes from the filename:

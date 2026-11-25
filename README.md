@@ -24,7 +24,8 @@ content/                      everything you normally edit
   projects/<slug>/            one folder per project  →  /projects/<slug>/
     index.md                  details (front matter) + description (Markdown)
     cover.png                 required: list thumbnail and header image
-    screenshots/              optional: any images here become a gallery
+    thumbnail.png             optional: a different list thumbnail (set `thumbnail:`), for wide covers
+    screenshots/              optional: PNG/JPG/WebP images here become a gallery
   notes/<slug>/               one folder per note     →  /notes/<slug>.pdf
     index.md                  title, year, course, ...
     main.tex                  compiled to the PDF (or put a ready-made .pdf here instead)
@@ -40,7 +41,7 @@ npm run new -- project "Ray Tracer"
 
 This creates `content/projects/ray-tracer/index.md` with every field explained. Then:
 
-1. Add `cover.png` to that folder (required). Optionally add a `screenshots/` folder. A caption comes from each file's name: `1-main-menu.png` → "Main menu".
+1. Add `cover.png` to that folder (required). Optionally add a `screenshots/` folder of PNG, JPG or WebP images (not GIFs: link to animations from the text instead). A caption comes from each file's name: `1-main-menu.png` → "Main menu".
 2. Fill in `index.md`. `summary` is the one line shown in lists. `featured: true` also puts the project on the home page.
 3. Delete the `draft: true` line when it's ready. Drafts appear in `npm run dev` but not on the live site.
 
