@@ -16,7 +16,15 @@
   --serif: 'Source Serif 4 Variable', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
   --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-  --measure: 42rem;
+  /* Page width grows with the screen: about the same as a phone/laptop layout up to ~1400px,
+     then wider on monitors, stopping at 80rem. */
+  --page: clamp(42rem, 85vw - 28rem, 80rem);
+  /* Paragraphs stay at a comfortable reading width however wide the page gets. */
+  --measure: 44rem;
+  /* Lists of projects and notes split into columns once each column can be this wide. */
+  --column: 26rem;
+  /* Space between the content and the edge of the screen. */
+  --gutter: clamp(1.25rem, 3vw, 2.5rem);
 }
 
 :root[data-theme='light'] { color-scheme: light; }
@@ -34,6 +42,11 @@ html {
   text-size-adjust: 100%;
 }
 
+/* Slightly larger text on big monitors, so it isn't tiny from a desk's distance.
+   (Everything is sized in rem, so the layout scales with it.) */
+@media (min-width: 110rem) { html { font-size: 106.25%; } }
+@media (min-width: 150rem) { html { font-size: 118.75%; } }
+
 body {
   margin: 0;
   background: var(--bg);
@@ -50,9 +63,16 @@ body {
 main,
 .site-footer {
   width: 100%;
-  max-width: var(--measure);
+  max-width: var(--page);
   margin-inline: auto;
-  padding-inline: 1.25rem;
+  padding-inline: var(--gutter);
+}
+
+/* The footer's top rule should line up with the content, not run into the gutters. */
+.site-footer {
+  width: calc(100% - 2 * var(--gutter));
+  max-width: calc(var(--page) - 2 * var(--gutter));
+  padding-inline: 0;
 }
 
 main {
@@ -228,6 +248,12 @@ img {
 }
 
 /* Markdown body text from content/. */
+.prose,
+.tagline,
+.project-header .lede {
+  max-width: var(--measure);
+}
+
 .prose > :first-child { margin-top: 0; }
 .prose h2 { margin: 2rem 0 0.75rem; }
 .prose h3 { margin: 1.5rem 0 0.5rem; }
@@ -259,7 +285,8 @@ img {
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--column)), 1fr));
+  gap: 1.75rem 3rem;
 }
 
 .project-item {
@@ -338,8 +365,8 @@ img {
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1.25rem;
 }
 
 .gallery figure { margin: 0; }
@@ -428,6 +455,7 @@ a[data-lightbox] { cursor: zoom-in; }
   border: 1px solid var(--rule);
 }
 
+.about { max-width: calc(var(--measure) + 12rem); }
 .about h1 { margin-bottom: 1rem; }
 .about::after { content: ''; display: block; clear: both; }
 
