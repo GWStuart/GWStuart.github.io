@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { notes } = Astro.props;
-// Note PDFs open in a new tab, so the notes list stays open behind them.
+// The title goes to the note's page (PDF embedded); the PDF link opens the file itself in a new tab.
 ---
 
 <ul class="item-list">
@@ -18,7 +18,7 @@ const { notes } = Astro.props;
         <li class="note-item">
           <div class="item-heading">
             <h3>
-              <a href={notePdfUrl(note)} target="_blank" rel="noopener">{course ? `${course}: ${title}` : title}</a>
+              <a href={`/notes/${note.id}/`}>{course ? `${course}: ${title}` : title}</a>
               {draft && <span class="badge">Draft</span>}
             </h3>
             <span class="meta">{when}</span>

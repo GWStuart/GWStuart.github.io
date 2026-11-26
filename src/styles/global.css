@@ -250,7 +250,8 @@ img {
 /* Markdown body text from content/. */
 .prose,
 .tagline,
-.project-header .lede {
+.project-header .lede,
+.note-header .lede {
   max-width: var(--measure);
 }
 
@@ -351,7 +352,8 @@ img {
   margin-bottom: 1.25rem;
 }
 
-.project-header .lede {
+.project-header .lede,
+.note-header .lede {
   font-size: 1.15rem;
   color: var(--muted);
   margin: 0.5rem 0 0.5rem;
@@ -360,9 +362,37 @@ img {
 
 .project-header .inline-list { margin-bottom: 0.25rem; }
 
-.project-links {
+.project-links,
+.note-links {
   margin-top: 0.75rem;
   font-weight: 500;
+}
+
+/* ---- Note page ------------------------------------------------------------ */
+.note-header .meta { margin: 0; }
+
+/* The browser's own PDF viewer, sized to fill most of the screen. */
+.pdf-viewer {
+  display: block;
+  width: 100%;
+  height: 88vh;
+  min-height: 30rem;
+  margin-top: 1.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--surface);
+}
+
+/* Shown inside the viewer's box by browsers that can't embed PDFs. */
+.pdf-fallback {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+}
+
+/* Phones mostly can't embed PDFs (and the page would be too small to read anyway), so they
+   just get the "Open PDF" link above. */
+@media (max-width: 40rem) {
+  .pdf-viewer { display: none; }
 }
 
 .cover {

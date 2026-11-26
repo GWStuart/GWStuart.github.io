@@ -1,0 +1,50 @@
+---
+// One page per note, with its PDF embedded so readers stay on the site.
+import Base from '../../../layouts/Base.astro';
+import { getNotes, notePdfUrl, semesterLabel, type Note } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const notes = await getNotes();
+  return notes.map((note) => ({ params: { slug: note.id }, props: { note } }));
+}
+
+interface Props {
+  note: Note;
+}
+
+const { note } = Astro.props;
+const { title, course, year, semester, summary, draft } = note.data;
+const heading = course ? `${course}: ${title}` : title;
+const when = [semesterLabel(semester), year].filter(Boolean).join(' ');
+const pdf = notePdfUrl(note);
+// Viewers otherwise open the PDF's bookmarks sidebar, which covers the page in an embedded frame.
+const embedded = `${pdf}#pagemode=none&navpanes=0`;
+---
+
+<Base title={heading} description={summary ?? `${heading}: notes by George Stuart.`}>
+  <a class="back" href="/notes/">← All notes</a>
+
+  <header class="note-header">
+    <h1>
+      {heading}
+      {draft && <span class="badge">Draft</span>}
+    </h1>
+    {summary && <p class="lede">{summary}</p>}
+    <p class="meta">{when}</p>
+    <ul class="inline-list note-links">
+      <li>
+        <a href={pdf} target="_blank" rel="noopener">Open PDF in a new tab</a>
+      </li>
+      <li>
+        <a href={pdf} download>Download</a>
+      </li>
+    </ul>
+  </header>
+
+  <!-- Browsers that can't show PDFs inline (most phones) get the fallback text instead. -->
+  <object class="pdf-viewer" data={embedded} type="application/pdf" aria-label={`${heading} (PDF)`}>
+    <p class="pdf-fallback">
+      This browser can't show the PDF here. <a href={pdf}>Open the PDF</a> instead.
+    </p>
+  </object>
+</Base>

@@ -82,7 +82,7 @@ draft: true             # visible in \`npm run dev\` only; delete this line to p
   console.log(`Created ${dir}/index.md
 
 Next:
-  1. Put the finished PDF in ${dir}/ (any file name, one PDF per note). It is served at /notes/${slug}.pdf.
+  1. Put the finished PDF in ${dir}/ (any file name, one PDF per note). It is shown at /notes/${slug}/.
   2. Fill in index.md, then delete the "draft: true" line to publish.
   3. Preview with: npm run dev`);
 }

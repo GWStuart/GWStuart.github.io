@@ -26,7 +26,7 @@ content/                      everything you normally edit
     cover.png                 required: list thumbnail and header image
     thumbnail.png             optional: a different list thumbnail (set `thumbnail:`), for wide covers
     screenshots/              optional: PNG/JPG/WebP images here become a gallery
-  notes/<slug>/               one folder per note     →  /notes/<slug>.pdf
+  notes/<slug>/               one folder per note     →  /notes/<slug>/ (PDF embedded) and /notes/<slug>.pdf
     index.md                  title, year, course, ...
     <anything>.pdf            the finished PDF (exactly one per folder)
 src/site.config.ts            name, tagline, social links, CV switch
@@ -53,7 +53,7 @@ Projects are sorted by `year` (newest first), so there's no ordering number to m
 npm run new -- note "Complex Analysis"
 ```
 
-Put the finished PDF in the new folder (any file name), fill in `index.md`, then delete `draft: true`. The PDF is served at `/notes/<slug>.pdf`. The site only publishes PDFs; the LaTeX source stays wherever you keep it.
+Put the finished PDF in the new folder (any file name), fill in `index.md`, then delete `draft: true`. Each note gets a page at `/notes/<slug>/` with the PDF embedded, and the PDF itself is at `/notes/<slug>.pdf`. The site only publishes PDFs; the LaTeX source stays wherever you keep it.
 
 - **Updating a note:** replace the PDF in its folder. The URL stays the same.
 - **One PDF per note:** if a published note's folder has no PDF, or more than one, `npm run build` stops and names the folder.

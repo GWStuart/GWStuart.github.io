@@ -1,6 +1,6 @@
 # Notes
 
-Each note is a folder here: `content/notes/<slug>/`, published at `/notes/<slug>.pdf`.
+Each note is a folder here: `content/notes/<slug>/`. It gets a page at `/notes/<slug>/` with the PDF embedded, and the PDF itself is served at `/notes/<slug>.pdf`.
 
 ```
 content/notes/complex-analysis/
