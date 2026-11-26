@@ -16,13 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Build maths notes (LaTeX → PDF)
-        if: hashFiles('content/notes/*/index.md') != ''
-        uses: xu-cheng/texlive-action@v3
-        with:
-          scheme: full
-          run: bash scripts/build-notes.sh
-
       - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc

@@ -6,9 +6,6 @@ export const site = {
   description:
     'Programming projects and maths notes by George Stuart, a Mathematics and Computer Science student at the University of Queensland.',
 
-  // Used for "source" links on notes.
-  repo: 'https://github.com/GWStuart/GWStuart.github.io',
-
   // To show a CV link in the header and links row: put the PDF at public/cv.pdf and set this to '/cv.pdf'.
   cv: null as string | null,
 

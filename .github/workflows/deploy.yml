@@ -22,19 +22,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # The TeX Live image is large, so it is only used when a note has LaTeX source (main.tex).
-      - name: Build maths notes (LaTeX → PDF)
-        if: hashFiles('content/notes/*/main.tex') != ''
-        uses: xu-cheng/texlive-action@v3
-        with:
-          scheme: full
-          run: bash scripts/build-notes.sh
-
-      # Notes that are just a finished PDF only need copying into place.
-      - name: Copy PDF-only notes
-        if: hashFiles('content/notes/*/main.tex') == '' && hashFiles('content/notes/*/index.md') != ''
-        run: bash scripts/build-notes.sh
-
       - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc

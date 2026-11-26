@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { readdirSync } from 'node:fs';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import type { ImageMetadata } from 'astro';
 
@@ -69,20 +69,26 @@ export function getScreenshots(projectId: string) {
     });
 }
 
-/** Where a note's PDF is served. `npm run notes` (or CI) puts it there. */
-export function notePdfUrl(note: Note) {
-  const url = `/notes/${note.id}.pdf`;
-  if (!existsSync(`public${url}`)) {
-    const message = `Note "${note.id}" has no PDF yet: run \`npm run notes\` to build public${url} from content/notes/${note.id}/.`;
-    if (import.meta.env.PROD) throw new Error(message);
-    console.warn(message);
-  }
-  return url;
+/**
+ * The finished PDF for a note: the one .pdf file in its folder, content/notes/<id>/.
+ * Missing or extra PDFs stop the build (in `npm run dev` they only print a warning).
+ */
+export function notePdfFile(note: Note): string | undefined {
+  const dir = `content/notes/${note.id}`;
+  const pdfs = readdirSync(dir).filter((file) => file.toLowerCase().endsWith('.pdf'));
+  if (pdfs.length === 1) return `${dir}/${pdfs[0]}`;
+  const message =
+    pdfs.length === 0
+      ? `Note "${note.id}" has no PDF: put the finished PDF in ${dir}/.`
+      : `Note "${note.id}" has ${pdfs.length} PDFs (${pdfs.join(', ')}): ${dir}/ should contain exactly one.`;
+  if (import.meta.env.PROD) throw new Error(message);
+  console.warn(message);
+  return undefined;
 }
 
-/** Link to the note's LaTeX source on GitHub, if it has any (PDF-only notes don't). */
-export function noteSourceUrl(note: Note, repo: string) {
-  return existsSync(`content/notes/${note.id}/main.tex`) ? `${repo}/tree/main/content/notes/${note.id}` : undefined;
+/** Where a note's PDF is served. src/pages/notes/[slug].pdf.ts writes it there. */
+export function notePdfUrl(note: Note) {
+  return `/notes/${note.id}.pdf`;
 }
 
 export function semesterLabel(semester: Note['data']['semester']) {

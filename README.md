@@ -28,7 +28,7 @@ content/                      everything you normally edit
     screenshots/              optional: PNG/JPG/WebP images here become a gallery
   notes/<slug>/               one folder per note     →  /notes/<slug>.pdf
     index.md                  title, year, course, ...
-    main.tex                  compiled to the PDF (or put a ready-made .pdf here instead)
+    <anything>.pdf            the finished PDF (exactly one per folder)
 src/site.config.ts            name, tagline, social links, CV switch
 src/                          layouts, pages and styles (rarely needs touching)
 ```
@@ -51,13 +51,12 @@ Projects are sorted by `year` (newest first), so there's no ordering number to m
 
 ```sh
 npm run new -- note "Complex Analysis"
-npm run notes      # compiles content/notes/*/main.tex into public/notes/*.pdf
 ```
 
-Write the notes in `main.tex`, then delete `draft: true` in `index.md`. On deploy, CI compiles the LaTeX itself (full TeX Live), so the PDFs never need committing.
+Put the finished PDF in the new folder (any file name), fill in `index.md`, then delete `draft: true`. The PDF is served at `/notes/<slug>.pdf`. The site only publishes PDFs; the LaTeX source stays wherever you keep it.
 
-- **Shared macros or preamble:** put them in `content/notes/_shared/` and `\input{...}` them from any note.
-- **Keeping the source private:** leave out `main.tex` and drop a single finished `.pdf` in the note's folder instead. (CI only installs TeX Live when at least one note has a `main.tex`.)
+- **Updating a note:** replace the PDF in its folder. The URL stays the same.
+- **One PDF per note:** if a published note's folder has no PDF, or more than one, `npm run build` stops and names the folder.
 - **The Notes page and header link** appear automatically once the first note is published.
 
 ## Adding a CV
@@ -81,10 +80,9 @@ This re-renders the two PNG versions:
 
 Push to `main`. `.github/workflows/deploy.yml` then:
 
-1. compiles the notes
-2. builds the site
-3. checks that every internal link and image resolves
-4. publishes to GitHub Pages
+1. builds the site
+2. checks that every internal link and image resolves
+3. publishes to GitHub Pages
 
 This needs Settings → Pages → Source set to **GitHub Actions**.
 

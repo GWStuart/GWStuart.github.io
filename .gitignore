@@ -3,9 +3,6 @@ node_modules/
 dist/
 .astro/
 
-# PDFs compiled from content/notes by `npm run notes`
-public/notes/
-
 # local workspace for notes being written or converted (see drafts/README.md)
 drafts/
 

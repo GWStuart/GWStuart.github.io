@@ -1,6 +1,5 @@
 ---
-import { site } from '../site.config';
-import { notePdfUrl, noteSourceUrl, semesterLabel, type Note } from '../lib/content';
+import { notePdfUrl, semesterLabel, type Note } from '../lib/content';
 
 interface Props {
   notes: Note[];
@@ -14,7 +13,6 @@ const { notes } = Astro.props;
   {
     notes.map((note) => {
       const { title, course, year, semester, summary, draft } = note.data;
-      const source = noteSourceUrl(note, site.repo);
       const when = [semesterLabel(semester), year].filter(Boolean).join(' ');
       return (
         <li class="note-item">
@@ -31,11 +29,6 @@ const { notes } = Astro.props;
               <li>
                 <a href={notePdfUrl(note)} target="_blank" rel="noopener">PDF</a>
               </li>
-              {source && (
-                <li>
-                  <a href={source}>LaTeX source</a>
-                </li>
-              )}
             </ul>
           </div>
         </li>

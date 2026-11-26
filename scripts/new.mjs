@@ -79,38 +79,10 @@ draft: true             # visible in \`npm run dev\` only; delete this line to p
 ---
 `,
   );
-  const latexTitle = title.replace(/[\\{}&%$#_^~]/g, (c) =>
-    c === '\\' ? '\\textbackslash{}' : c === '^' ? '\\^{}' : c === '~' ? '\\~{}' : `\\${c}`,
-  );
-  writeFileSync(
-    join(dir, 'main.tex'),
-    `\\documentclass[11pt]{article}
-\\usepackage[margin=2.5cm]{geometry}
-\\usepackage{amsmath, amssymb, amsthm}
-\\usepackage{hyperref}
-
-\\newtheorem{theorem}{Theorem}[section]
-\\newtheorem{lemma}[theorem]{Lemma}
-\\theoremstyle{definition}
-\\newtheorem{definition}[theorem]{Definition}
-
-\\title{${latexTitle}}
-\\author{George Stuart}
-\\date{${year}}
-
-\\begin{document}
-\\maketitle
-
-\\section{Introduction}
-
-\\end{document}
-`,
-  );
-  console.log(`Created ${dir}/index.md and ${dir}/main.tex
+  console.log(`Created ${dir}/index.md
 
 Next:
-  1. Write the notes in main.tex. Shared macros can go in content/notes/_shared/ (use \\input{file}).
-     (Or delete main.tex and drop a finished PDF in the folder instead.)
-  2. Build the PDF:  npm run notes
-  3. Delete the "draft: true" line in index.md to publish, then preview with: npm run dev`);
+  1. Put the finished PDF in ${dir}/ (any file name, one PDF per note). It is served at /notes/${slug}.pdf.
+  2. Fill in index.md, then delete the "draft: true" line to publish.
+  3. Preview with: npm run dev`);
 }

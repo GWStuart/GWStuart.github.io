@@ -4,11 +4,12 @@ Each note is a folder here: `content/notes/<slug>/`, published at `/notes/<slug>
 
 ```
 content/notes/complex-analysis/
-  index.md     title, year, optional course / semester / summary
-  main.tex     compiled to the PDF (by `npm run notes` locally, and automatically on deploy)
+  index.md                 title, year, optional course / semester / summary
+  complex-analysis.pdf     the finished PDF (any file name, exactly one per folder)
 ```
 
-- Start one with `npm run new -- note "Complex Analysis"`.
-- To publish a PDF without its source, leave out `main.tex` and put a single `.pdf` in the folder instead.
-- Shared preambles or macros can go in `content/notes/_shared/`. Any note can `\input` them.
+- Start one with `npm run new -- note "Complex Analysis"`, then drop the PDF into the folder.
+- To update a note, replace its PDF. The URL stays the same.
+- The site serves the PDF as it is; it doesn't compile LaTeX. Keep the source wherever you like.
+- If a published note's folder has no PDF, or more than one, the build stops and names the folder.
 - The Notes page and the Notes link in the header only appear once there is at least one published note.
