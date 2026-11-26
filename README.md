@@ -64,6 +64,19 @@ Write the notes in `main.tex`, then delete `draft: true` in `index.md`. On deplo
 
 Put the PDF at `public/cv.pdf` and set `cv: '/cv.pdf'` in `src/site.config.ts`. A CV link then appears in the header and the links row.
 
+## Changing the favicon
+
+The favicon is `public/favicon.svg`: the calligraphic 𝒢 from LaTeX (`\mathcal{G}`) in the accent blue, which turns lighter blue when the browser is in dark mode. The colours are in the `<style>` line at the top of the file. After editing it, run:
+
+```sh
+npm run favicons
+```
+
+This re-renders the two PNG versions:
+
+- `favicon.ico`, for browsers that don't use SVG favicons
+- `apple-touch-icon.png`, for phone home screens
+
 ## Deploying
 
 Push to `main`. `.github/workflows/deploy.yml` then:

@@ -294,6 +294,14 @@ img {
   grid-template-columns: 7.5rem 1fr;
   gap: 1.1rem;
   align-items: start;
+  position: relative;
+}
+
+/* The title's link is stretched over the whole item, so a click anywhere in it opens the project. */
+.project-item h3 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
 }
 
 .project-item .thumb img {

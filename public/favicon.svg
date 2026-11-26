@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- The calligraphic G from Computer Modern (\mathcal{G}, the cmsy10 font), converted to
+       an outline because favicons can't load web fonts. The thin outline in the same colour
+       thickens the hairlines so they survive at 16px. Colours are the accent from
+       src/styles/global.css: blue, and lighter blue when the browser is dark.
+       favicon.ico and apple-touch-icon.png are renders of this file; see the README if it changes. -->
+  <style>path{fill:#1f5ea8;stroke:#1f5ea8;stroke-width:2.2;stroke-linejoin:round}@media (prefers-color-scheme:dark){path{fill:#82aee6;stroke:#82aee6}}</style>
+  <path d="M40.44 40.78C38.67 46.75 36.96 49.76 36.31 50.81C33.75 55.26 32.38 55.4 30.15 55.4C29.04 55.4 24.38 55.2 20.52 52.58C17.57 52.71 15.27 55 15.27 55.72C15.27 56.31 19.73 59 25.82 59C30.54 59 38.28 56.51 43.19 45.83C44.89 42.16 46.01 38.42 46.21 37.64C47.52 33.11 48.89 27.87 48.89 27.61C48.89 27.22 48.76 27.02 48.17 27.02C47.58 27.02 46.47 27.35 45.09 28.26C43.58 29.25 43.52 29.58 43.06 31.21C42.4 33.44 38.54 43.14 30.41 43.14C24.05 43.14 20.32 37.96 20.32 30.56C20.32 25.51 22.35 18.76 26.15 14.17C27.92 12.08 31.13 8.6 38.54 8.6C39.78 8.6 41.68 8.8 43.32 9.33C44.04 9.52 45.68 10.05 45.68 12.14C45.68 14.37 42.27 18.57 42.01 18.96C41.75 19.22 41.55 19.48 41.55 19.75C41.55 20.2 41.88 20.2 42.27 20.2C44.17 20.2 46.34 18.43 48.11 16.01C48.63 15.29 51.25 11.62 51.25 9.39C51.25 6.7 49.22 6.05 48.43 5.79C46.01 5 43.78 5 42.86 5C28.05 5 14.75 17.98 14.75 33.38C14.75 40 17.7 46.75 26.15 46.75C31.07 46.75 36.11 44.25 40.44 40.78Z"/>
+</svg>

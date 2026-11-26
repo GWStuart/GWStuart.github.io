@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "notes": "bash scripts/build-notes.sh",
-    "new": "node scripts/new.mjs"
+    "new": "node scripts/new.mjs",
+    "favicons": "node scripts/favicons.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.6",
