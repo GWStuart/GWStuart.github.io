@@ -6,6 +6,9 @@ dist/
 # PDFs compiled from content/notes by `npm run notes`
 public/notes/
 
+# local workspace for notes being written or converted (see drafts/README.md)
+drafts/
+
 # leftovers from the old Jekyll site
 _site/
 .jekyll-cache/

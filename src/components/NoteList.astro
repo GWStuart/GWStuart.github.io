@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { notes } = Astro.props;
+// Note PDFs open in a new tab, so the notes list stays open behind them.
 ---
 
 <ul class="item-list">
@@ -19,7 +20,7 @@ const { notes } = Astro.props;
         <li class="note-item">
           <div class="item-heading">
             <h3>
-              <a href={notePdfUrl(note)}>{course ? `${course}: ${title}` : title}</a>
+              <a href={notePdfUrl(note)} target="_blank" rel="noopener">{course ? `${course}: ${title}` : title}</a>
               {draft && <span class="badge">Draft</span>}
             </h3>
             <span class="meta">{when}</span>
@@ -28,7 +29,7 @@ const { notes } = Astro.props;
             {summary && <p class="summary">{summary}</p>}
             <ul class="inline-list meta">
               <li>
-                <a href={notePdfUrl(note)}>PDF</a>
+                <a href={notePdfUrl(note)} target="_blank" rel="noopener">PDF</a>
               </li>
               {source && (
                 <li>

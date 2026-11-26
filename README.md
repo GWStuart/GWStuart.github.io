@@ -57,7 +57,7 @@ npm run notes      # compiles content/notes/*/main.tex into public/notes/*.pdf
 Write the notes in `main.tex`, then delete `draft: true` in `index.md`. On deploy, CI compiles the LaTeX itself (full TeX Live), so the PDFs never need committing.
 
 - **Shared macros or preamble:** put them in `content/notes/_shared/` and `\input{...}` them from any note.
-- **Keeping the source private:** leave out `main.tex` and drop a single finished `.pdf` in the note's folder instead.
+- **Keeping the source private:** leave out `main.tex` and drop a single finished `.pdf` in the note's folder instead. (CI only installs TeX Live when at least one note has a `main.tex`.)
 - **The Notes page and header link** appear automatically once the first note is published.
 
 ## Adding a CV
